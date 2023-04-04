@@ -1,0 +1,28 @@
+package hello.servlet.basic;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(name = "helloServlet", urlPatterns = "/hello")
+public class HelloServlet extends HttpServlet {
+
+    /**
+     * 서블릿이 호출되면 서비스 메서드가 먼저 호출된다.
+     */
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println("HelloServlet.service");
+        System.out.println("req = " + request);
+        System.out.println("resp = " + request);
+        System.out.println("username = " + request.getParameter("username"));
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("hello " + request.getParameter("username"));
+    }
+}
